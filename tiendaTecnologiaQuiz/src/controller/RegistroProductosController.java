@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Producto;
@@ -173,9 +174,18 @@ public class RegistroProductosController {
 		columnReferenciaE.setCellValueFactory(new PropertyValueFactory<>("referencia"));
 		columnPrecioE.setCellValueFactory(new PropertyValueFactory<>("precio"));
 		columnNombreE.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-
+		columnNombreE.setCellFactory(TextFieldTableCell.forTableColumn());
+		columnNombreE.setOnEditCommit(event -> {
+			Producto product = event.getRowValue();
+			product.setNombre(event.getNewValue());
+			productoDAO.update(product);
+		});
+		
 		tableExcel.getItems().setAll(productos);
+		tableExcel.setEditable(true);
+		initialize();
 	}
+	
 
 	@FXML
 	void cerrarSesion(ActionEvent event) {

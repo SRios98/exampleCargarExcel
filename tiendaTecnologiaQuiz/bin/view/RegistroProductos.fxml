@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="607.0" prefWidth="614.0" stylesheets="@../../resources/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistroProductosController">
+    
+    <center>
+        <VBox alignment="CENTER" prefHeight="492.0" prefWidth="574.0" spacing="10" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <children>
+                <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Productos de la Tienda" />
+
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50" />
+                        <ColumnConstraints percentWidth="50" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints vgrow="ALWAYS" />
+                        <RowConstraints vgrow="NEVER" />
+                        <RowConstraints vgrow="NEVER" />
+                    </rowConstraints>
+
+                    <!-- Tabla de productos -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <children>
+                            <Label text="Productos disponibles" />
+                            <TableView fx:id="tableProductos" prefHeight="300.0" prefWidth="280.0">
+                                <columns>
+                                    <TableColumn fx:id="columnNombre" prefWidth="92.0" text="Nombre" />
+                                    <TableColumn fx:id="columnPrecio" prefWidth="83.0" text="Precio" />
+                                    <TableColumn fx:id="columnCantidad" prefWidth="89.0" text="Cantidad" />
+                                </columns>
+                            </TableView>
+                        </children>
+                    </VBox>
+
+                    <!-- Tabla de Excel -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <children>
+                            <Label text="Registro de productos" />
+                            <TableView fx:id="tableExcel" prefHeight="300.0" prefWidth="280.0">
+                                <columns>
+                                    <TableColumn fx:id="columnReferenciaE" prefWidth="100" text="Referencia" />
+                                    <TableColumn fx:id="columnNombreE" prefWidth="87.0" text="Nombre" />
+                                    <TableColumn fx:id="columnPrecioE" prefWidth="77.0" text="Precio" />
+                                </columns>
+                            </TableView>
+                        </children>
+                    </VBox>
+
+                    <!-- Botones alineados -->
+                    <HBox alignment="CENTER" spacing="15" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                        <children>
+                            <Button onAction="#eliminar" text="Eliminar" />
+                            <Button onAction="#registrar" text="Registrar" />
+                            <Button onAction="#actualizar" text="Actualizar" />
+                        </children>
+                    </HBox>
+                </GridPane>
+            <HBox prefHeight="52.0" prefWidth="554.0">
+               <children>
+                  <Button fx:id="cargarE" mnemonicParsing="false" onAction="#cargarExcel" text="Cargar Excel" />
+                         <Button onAction="#crearExcel" prefHeight="40.0" prefWidth="162.0" text="Crear Excel" />
+                         <Button onAction="#cerrarSesion" text="Cerrar Sesión" />
+               </children>
+            </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
